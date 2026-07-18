@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG) – 2026</title>
+<style>
+  :root {
+    --navy-blue: #0c2340;
+    --light-bg: #eef2f7;
+    --border-color: #cbd5e1;
+    --success-green: #15803d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-bg);
+    color: #1e293b;
+  }
+  .top-browser-strip {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .portal-header {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 3px solid var(--navy-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .gov-emblem {
+    width: 45px;
+    height: auto;
+  }
+  .gov-text h1 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+  }
+  .gov-text h2 {
+    font-size: 12px;
+    color: #475569;
+  }
+  .header-center {
+    text-align: center;
+    flex: 1;
+    min-width: 280px;
+    padding: 10px;
+  }
+  .header-center h3 {
+    font-size: 16px;
+    color: var(--navy-blue);
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .header-center p {
+    font-size: 14px;
+    color: #334155;
+    font-weight: bold;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .agency-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+  }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9933, #ffffff, #1e8e5a);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .logo-text b { font-size: 12px; display: block; color: #000; }
+  .logo-text span { font-size: 10px; color: #64748b; display: block; }
+
+  .main-auth-container {
+    max-width: 580px;
+    margin: 40px auto;
+    padding: 0 16px;
+  }
+  .login-card {
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .card-banner {
+    background-color: var(--navy-blue);
+    color: #ffffff;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body {
+    padding: 24px;
+  }
+  .form-group-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .form-group-row label {
+    width: 150px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #334155;
+    text-align: right;
+    padding-right: 15px;
+  }
+  .form-group-row label .case-hint {
+    display: block;
+    font-size: 12px;
+    color: #16a34a;
+    font-weight: normal;
+  }
+  .input-field {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  .captcha-interactive-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .captcha-bg-wrapper {
+    background-color: #000080;
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  canvas#authCaptchaCanvas {
+    display: block;
+  }
+  .btn-refresh {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .btn-refresh img {
+    width: 22px;
+    height: 22px;
+  }
+  .action-submit-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding-left: 150px;
+  }
+  .btn-submit {
+    background-color: var(--success-green);
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .btn-submit:hover {
+    background-color: #166534;
+  }
+  .error-banner {
+    color: #b91c1c;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: left;
+    padding-left: 150px;
+    display: none;
+    font-weight: bold;
+  }
+  .portal-footer {
+    background-color: var(--navy-blue);
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+  }
+</style>
+</head>
+<body>
+
+  <!-- AUTHENTICATION FORM VIEW PORTAL -->
+  <div id="portal-root-view">
+    <div class="top-browser-strip">
+      <span>✕ &nbsp; 🗖 &nbsp; StaticHandler</span>
+      <strong>examinationservices.nic.in</strong>
+      <span>⋮</span>
+    </div>
+
+    <header class="portal-header">
+      <div class="header-left">
+        <div class="gov-emblem">
+          <svg style="width:38px; height:45px;" viewBox="0 0 24 24"><path fill="#666" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2AM12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18Z"/></svg>
+        </div>
+        <div class="gov-text">
+          <h1>Department of Higher Education</h1>
+          <h2>Ministry of Education | Government of India</h2>
+        </div>
+      </div>
+      <div class="header-center">
+        <h3>NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG) – 2026</h3>
+        <p>Score Card</p>
+      </div>
+      <div class="header-right">
+        <div class="agency-logo-row">
+          <div class="logo-icon"></div>
+          <div class="logo-text"><b>राष्ट्रीय परीक्षा एजेंसी</b><span>National Testing Agency</span></div>
+        </div>
+        <div class="agency-logo-row">
+          <div class="logo-icon"></div>
+          <div class="logo-text"><b>राष्ट्रीय आयुर्विज्ञान आयोग</b><span>National Medical Commission</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-auth-container">
+      <div class="login-card">
+        <div class="card-banner">
+          <span style="font-size:16px;">🔑</span> View Result
+        </div>
+        <div class="card-body">
+          <form id="authPortalForm">
+            
+            <div class="form-group-row">
+              <label for="captchaInput">Enter CAPTCHA<span class="case-hint">(case sensitive) :</span></label>
+              <input type="text" id="captchaInput" class="input-field" required>
+            </div>
+
+            <div class="error-banner" id="captchaErrorDisplay">Incorrect CAPTCHA. Please try again.</div>
+
+            <div class="form-group-row" style="margin-bottom: 12px;">
+              <label>CAPTCHA :</label>
+              <div class="captcha-interactive-box">
+                <div class="captcha-bg-wrapper">
+                  <canvas id="authCaptchaCanvas" width="130" height="38"></canvas>
+                </div>
+                <button type="button" class="btn-refresh" id="btnRefreshCaptcha" title="Refresh Security Code">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l6-5.67"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="action-submit-row">
+              <button type="submit" class="btn-submit">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="portal-footer">
+      This site is designed and hosted by NIC PEP Division. The contents are provided by NTA. For any further information, please contact NTA.
+    </footer>
+  </div>
+
+<script>
+  // ---------- CAPTCHA SYSTEM ----------
+  const captchaAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
+  let activeCaptchaText = "";
+  const canvasElement = document.getElementById('authCaptchaCanvas');
+  const canvasCtx = canvasElement.getContext('2d');
+
+  function compileRandomString(length = 6) {
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += captchaAlphabet.charAt(Math.floor(Math.random() * captchaAlphabet.length));
+    }
+    return result;
+  }
+
+  function renderSecurityCaptcha() {
+    activeCaptchaText = compileRandomString();
+    const width = canvasElement.width;
+    const height = canvasElement.height;
+    
+    canvasCtx.clearRect(0, 0, width, height);
+    canvasCtx.fillStyle = "#000080";
+    canvasCtx.fillRect(0, 0, width, height);
+
+    // Distortion noise lines
+    for (let i = 0; i < 5; i++) {
+      canvasCtx.strokeStyle = "rgba(255, 255, 255, " + (0.2 + Math.random() * 0.2) + ")";
+      canvasCtx.lineWidth = 1.5;
+      canvasCtx.beginPath();
+      canvasCtx.moveTo(Math.random() * width, Math.random() * height);
+      canvasCtx.lineTo(Math.random() * width, Math.random() * height);
+      canvasCtx.stroke();
+    }
+
+    // Render characters cleanly with positioning transforms
+    canvasCtx.font = "italic bold 22px Arial, sans-serif";
+    canvasCtx.textBaseline = "middle";
+    let textXPosition = 10;
+
+    for (let i = 0; i < activeCaptchaText.length; i++) {
+      canvasCtx.save();
+      let textYPosition = height / 2 + (Math.random() * 8 - 4);
+      let characterRotation = (Math.random() * 0.3 - 0.15);
+      
+      canvasCtx.translate(textXPosition, textYPosition);
+      canvasCtx.rotate(characterRotation);
+      canvasCtx.fillStyle = "#ffffff";
+      canvasCtx.fillText(activeCaptchaText.charAt(i), 0, 0);
+      canvasCtx.restore();
+      textXPosition += 19;
+    }
+  }
+
+  // Init and listeners
+  renderSecurityCaptcha();
+  document.getElementById('btnRefreshCaptcha').addEventListener('click', renderSecurityCaptcha);
+
+  // ---------- AUTH FORM SEAMLESS SUBMISSION INTO SEPARATE DOCUMENT WINDOW ----------
+  document.getElementById('authPortalForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const userInput = document.getElementById('captchaInput').value.trim();
+    
+    if (userInput !== activeCaptchaText) {
+      document.getElementById('captchaErrorDisplay').style.display = "block";
+      renderSecurityCaptcha();
+      document.getElementById('captchaInput').value = "";
+      return;
+    }
+
+    document.getElementById('captchaErrorDisplay').style.display = "none";
+
+    // OPEN COMPLETELY NEW UN-SANDBOXED BROWSER WINDOW/TAB CONTEXT
+    const targetWindow = window.open("", "_blank");
+    if (!targetWindow) {
+      alert("Popup Blocker detected! Please allow popups to view your Scorecard document seamlessly.");
+      return;
+    }
+
+    // EMIT FULL 3-PAGE SCORESHEET INTO TARGET CONTEXT WINDOW
+    targetWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEET UG 2026 Official Scorecard Output</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  /* Top Interactive Layout Bar */
+  .layout-control-header {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-radius: 4px;
+  }
+  .btn-action {
+    padding: 6px 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .btn-print-native { background-color: #dc2626; color: white; border-color: #b91c1c; }
+  .btn-close-native { background-color: #06b6d4; color: white; border-color: #0891b2; }
+
+  /* Continuous Multi-Page Structural Rules */
+  .scorecard-page-container {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #ffffff;
+    padding: 10px;
+  }
+  
+  /* Print Layout Page-Break Separation Controls */
+  .page-break-wrapper {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* Document Inner Elements Layout Design */
+  .scorecard-banner-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  .scorecard-banner-table td {
+    vertical-align: middle;
+    border: none !important;
+  }
+  .banner-central-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+  
+  table.scorecard-data-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+  table.scorecard-data-matrix th, table.scorecard-data-matrix td {
+    border: 1px solid #b3b3b3;
+    padding: 7px 9px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  .section-label-strip {
+    background-color: #f3f4f6;
+    text-align: center;
+    font-weight: bold;
+    padding: 6px;
+    border: 1px solid #b3b3b3;
+    font-size: 13px;
+  }
+  
+  .img-barcode-view { width: 125px; height: auto; object-fit: contain; }
+  .img-photo-view { width: 115px; height: 135px; border: 1px solid #888888; object-fit: cover; }
+  .img-signature-view { width: 150px; height: 50px; object-fit: contain; }
+
+  .text-highlight-red { color: #dc2626; font-weight: bold; }
+  .ordered-instructions-list { margin: 8px 0 16px 22px; }
+  .ordered-instructions-list li { margin-bottom: 6px; text-align: justify; }
+
+  .formula-display-block {
+    text-align: center;
+    margin: 12px 0;
+    font-weight: bold;
+  }
+  .formula-top-fraction { display: inline-block; border-bottom: 1px solid #000000; padding: 0 8px; }
+  
+  .bottom-disclaimer-strip {
+    background-color: #0c2340;
+    color: #ffffff;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  /* CRITICAL: CSS PRINT MEDIA OPTIMIZATIONS */
+  @media print {
+    .layout-control-header { display: none !important; }
+    body { padding: 0; background-color: #ffffff; }
+    .scorecard-page-container { max-width: 100%; margin: 0; padding: 0; }
+    .bottom-disclaimer-strip { background-color: #0c2340 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-label-strip { background-color: #f3f4f6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Page Interactive Actions Header Bar -->
+  <div class="layout-control-header">
+    <button class="btn-action btn-print-native" onclick="window.print()">Print</button>
+    <button class="btn-action btn-close-native" onclick="window.close()">Close</button>
+  </div>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="scorecard-page-container page-break-wrapper">
+    <table class="scorecard-banner-table">
+      <tr>
+        <td style="width: 25%; text-align: left; font-size: 12px;">
+          <strong>Department of Higher Education</strong><br>
+          Ministry of Education<br>
+          Government of India
+        </td>
+        <td class="banner-central-title" style="width: 50%;">
+          NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG) &ndash; 2026<br>
+          Score Card
+        </td>
+        <td style="width: 25%; text-align: right; font-size: 12px;">
+          <strong>राष्ट्रीय परीक्षा एजेंसी</strong><br>
+          National Testing Agency<br>
+          <strong>राष्ट्रीय आयुर्विज्ञान आयोग</strong><br>
+          National Medical Commission
+        </td>
+      </tr>
+    </table>
+
+    <table class="scorecard-data-matrix">
+      <tr>
+        <td style="width: 18%;"><strong>Roll Number</strong></td>
+        <td style="width: 22%;">4413104136</td>
+        <td style="width: 18%;"><strong>Application Number</strong></td>
+        <td style="width: 22%;">260410023072</td>
+        <td rowspan="4" style="width: 20%; text-align: center;">
+          <img src="photo1.jpg" alt="Barcode Asset" class="img-barcode-view">
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Candidate's Name</strong></td>
+        <td colspan="3">WASEEM KHAN</td>
+      </tr>
+      <tr>
+        <td><strong>Mother's Name</strong></td>
+        <td>JARINA</td>
+        <td><strong>Date of Birth (DD/MM/YYYY)</strong></td>
+        <td>02/01/2008</td>
+      </tr>
+      <tr>
+        <td><strong>Father's Name</strong></td>
+        <td>AYYUB KHAN</td>
+        <td><strong>Gender</strong></td>
+        <td>Male</td>
+      </tr>
+      <tr>
+        <td><strong>Person with benchmark disability</strong></td>
+        <td>NO</td>
+        <td><strong>Nationality</strong></td>
+        <td>Indian</td>
+        <td style="text-align: center; border-top: none;">
+          <img src="photo2.jpg" alt="Candidate Photograph" class="img-photo-view"><br>
+          <span style="font-size: 8px; color: #444;">C7406E1C092BCBC1B5AA40CC405544B</span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="section-label-strip">Percentile obtained</div>
+    <table class="scorecard-data-matrix" style="margin-top: -1px;">
+      <tr>
+        <td style="width: 45%;"><strong>Biology (Botany & Zoology)</strong></td>
+        <td>65.9018098</td>
+      </tr>
+      <tr>
+        <td><strong>Chemistry</strong></td>
+        <td>86.2992807</td>
+      </tr>
+      <tr>
+        <td><strong>Physics</strong></td>
+        <td>75.9478373</td>
+      </tr>
+      <tr>
+        <td><strong>Percentile (Based on total marks obtained)</strong></td>
+        <td>75.9126354</td>
+      </tr>
+      <tr>
+        <td><strong>Percentile (Based on total marks obtained) in words</strong></td>
+        <td>Seventy Five point Nine One Two Six Three Five Four Only</td>
+      </tr>
+      <tr>
+        <td><strong>Total marks obtained (out of 720)</strong></td>
+        <td>331</td>
+      </tr>
+      <tr>
+        <td><strong>Total marks obtained (out of 720) in words</strong></td>
+        <td>Three Hundred Thirty One Only</td>
+      </tr>
+    </table>
+
+    <table class="scorecard-data-matrix">
+      <tr style="background-color: #f9f9f9; font-weight: bold;">
+        <td style="width: 25%;">NEET All-India Rank</td>
+        <td style="width: 35%;">Category</td>
+        <td style="width: 15%;">Category rank</td>
+        <td style="width: 10%;">PwBD</td>
+        <td style="width: 15%;">Category-PwBD rank</td>
+      </tr>
+      <tr>
+        <td>481580</td>
+        <td>OBC- NCL (Central List)</td>
+        <td>217557</td>
+        <td>NO</td>
+        <td>----</td>
+      </tr>
+    </table>
+  </div>
+
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="scorecard-page-container page-break-wrapper">
+    <div class="section-label-strip">Cut-off percentile and marks as per NMC/DCI/NCISM regulations</div>
+    <table class="scorecard-data-matrix" style="margin-top: -1px; text-align: center; font-size: 11px;">
+      <tr style="background-color: #f9f9f9; font-weight: bold;">
+        <td>Category</td>
+        <td>Cut off percentile</td>
+        <td>Cut off marks</td>
+        <td>Number of candidates</td>
+        <td>Category</td>
+        <td>Cut off percentile</td>
+        <td>Cut off marks</td>
+        <td>Number of candidates</td>
+      </tr>
+      <tr>
+        <td><strong>UR/EWS</strong></td>
+        <td>50<sup>th</sup> Percentile</td>
+        <td>715-213</td>
+        <td>996935</td>
+        <td><strong>UR/EWS-PwBD</strong></td>
+        <td>45<sup>th</sup> Percentile</td>
+        <td>212-194</td>
+        <td>480</td>
+      </tr>
+      <tr>
+        <td><strong>OBC</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>212-177</td>
+        <td>81111</td>
+        <td><strong>OBC-PwBD</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>193-177</td>
+        <td>185</td>
+      </tr>
+      <tr>
+        <td><strong>SC</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>212-177</td>
+        <td>29947</td>
+        <td><strong>SC-PwBD</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>193-177</td>
+        <td>64</td>
+      </tr>
+      <tr>
+        <td><strong>ST</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>212-177</td>
+        <td>12452</td>
+        <td><strong>ST-PwBD</strong></td>
+        <td>40<sup>th</sup> Percentile</td>
+        <td>191-178</td>
+        <td>11</td>
+      </tr>
+    </table>
+
+    <div style="margin-top: 20px;">
+      <div style="float: left; font-weight: bold; line-height: 1.6;">
+        DATE OF EXAM: 21
